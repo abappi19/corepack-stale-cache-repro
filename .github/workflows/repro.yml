@@ -3,6 +3,7 @@ on: [push, workflow_dispatch]
 jobs:
   reproduces-bug:
     strategy:
+      fail-fast: false
       matrix:
         os: [ubuntu-latest, macos-latest]
     runs-on: ${{ matrix.os }}
@@ -11,5 +12,6 @@ jobs:
       - uses: actions/setup-node@v5
         with:
           node-version: 24
+          package-manager-cache: false
       # repro.sh exits 1 when the bug reproduces, so this job is green while the bug exists.
       - run: "! ./repro.sh"

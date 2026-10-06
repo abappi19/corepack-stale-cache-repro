@@ -46,4 +46,4 @@ BUG REPRODUCED
 - Corepack 0.34.0 maps every pnpm >=6 to `./bin/pnpm.cjs` ([config.json](https://github.com/nodejs/corepack/blob/0b492c9c97e4b3d5e9a139eeedb931860127b470/config.json#L79-L83)) and writes that into the cache's `.corepack` file. pnpm 12 only ships `bin/pnpm.mjs`; newer Corepack maps pnpm >=11 to it ([config.json](https://github.com/nodejs/corepack/blob/d4dcb1f89741603e776bba9d457425750fa26987/config.json#L96-L100)).
 - `installVersion` reuses the cached `.corepack` `bin` without checking that the file exists ([corepackUtils.ts](https://github.com/nodejs/corepack/blob/d4dcb1f89741603e776bba9d457425750fa26987/sources/corepackUtils.ts#L214-L227)), and `runVersion` then loads the missing file.
 
-Workaround: delete the cached version (`rm -rf ~/.cache/node/corepack/v1/pnpm/12.2.1`, or `corepack cache clean`).
+Temporary workaround: delete the cached version (`rm -rf ~/.cache/node/corepack/v1/pnpm/12.2.1`, or `corepack cache clean`).
